@@ -44,6 +44,7 @@ function Banner() {
 
      
       </div>
+      <div className='banner_fadeBottom'></div>
   </header>)
 }
 
