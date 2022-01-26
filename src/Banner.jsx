@@ -2,14 +2,15 @@ import React, { useState,useEffect } from 'react';
 //import { useEffect } from 'react/cjs/react.development';
 import axios from './axios';
 import requests from './request';
-
+import './Banner.css'
 function Banner() {
-    const {movie,setMovie} = useState([]);
+    const [movie,setMovie] = useState([]);
 
     useEffect(()=>{
         async function fetchData(){
         const request = await axios.get(requests.fetchNetflixOriginals);
-        setMovie(request.data.results[
+        setMovie(
+            request.data.results[
         Math.floor(Math.random() * request.data.results.length - 1)
         ]);
     return request;
@@ -17,6 +18,9 @@ function Banner() {
     fetchData();
     },[]);
    // console.log(movie);
+   function trucate(str,n){
+       return str?.length>n?str.substr(0, n - 1) + "..." :str;
+   }
   return (
   <header 
   className='banner'
@@ -27,12 +31,18 @@ function Banner() {
     backgroundPosition:'center center',
   }}> 
       <div className='banner_contents'>
-      <h1>
+      <h1 className='banner_title'>
           {movie?.title||movie?.name||movie?.original_name}
       </h1>
-      {/*title*/}
-      {/*div btn x2*/}
-      {/*description*/}
+      <div className="banner_buttons">
+          <button className="banner_button">Play</button>
+          <button className="banner_button">My List</button>
+      </div>
+    
+      <h1 className='banner_description'>
+          {trucate(movie?.overview,150)}</h1>
+
+     
       </div>
   </header>)
 }
