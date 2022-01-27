@@ -23,7 +23,7 @@ function Navbar() {
       alt='Neflix-logo'></img>
        <img
       className='nav_avatar'
-      src="shrek.png"
+      src="bean.png"
       alt='avatar'></img>
   </div>);
 }
